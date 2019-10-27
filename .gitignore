@@ -5,8 +5,8 @@ target/
 !**/src/test/**
 mvnw*
 .mvn
-package*
-webpack*
+
+
 node_modules
 
 
