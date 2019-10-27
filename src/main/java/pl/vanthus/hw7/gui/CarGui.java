@@ -5,9 +5,11 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.HeaderRow;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -23,7 +25,7 @@ import pl.vanthus.hw7.model.enums.ModelEnum;
 
 
 @Route("car-gui")
-public class CarGui extends HorizontalLayout {
+public class CarGui extends VerticalLayout {
 
     CarDao carDao;
 
@@ -31,6 +33,10 @@ public class CarGui extends HorizontalLayout {
     public CarGui(CarDao carDao) {
         this.carDao = carDao;
 
+        Image image = new Image("https://cdn1.rentingcarz.com/cdn/images/landing-pages/xexotic-cars-midbanner.jpg.pagespeed.ic.lqGm6ZAgoo.jpg", "Banner");
+        image.setWidth("100%");
+
+        add(image);
         initAddCarForm();
         initGridCar();
 
