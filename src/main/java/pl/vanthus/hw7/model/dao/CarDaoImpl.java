@@ -8,6 +8,9 @@ import pl.vanthus.hw7.model.enums.ColorEnum;
 import pl.vanthus.hw7.model.enums.MakeEnum;
 import pl.vanthus.hw7.model.enums.ModelEnum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class CarDaoImpl implements CarDao {
 
@@ -24,5 +27,22 @@ public class CarDaoImpl implements CarDao {
            String sql = "INSERT INTO cars VALUES (?, ?, ?, ?, ?)";
            jdbcTemplate.update(sql, car.getCarId(), car.getMake().toString(), car.getModel().toString(), car.getColor().toString(), car.getProductionYear());
 
+    }
+
+    @Override
+    public List<Car> findAll() {
+        List<Car> cars = new ArrayList<>();
+        String sql = "SELECT * FROM cars";
+
+        jdbcTemplate.queryForList(sql).stream()
+                .forEach(element -> cars.add(new Car(
+                        Long.parseLong(String.valueOf(element.get("car_id"))),
+                        MakeEnum.valueOf(String.valueOf(element.get("make"))),
+                        ModelEnum.valueOf(String.valueOf(element.get("model"))),
+                        ColorEnum.valueOf(String.valueOf(element.get("color"))),
+                        Integer.parseInt(String.valueOf(element.get("production_year")))
+                )));
+
+        return cars;
     }
 }
