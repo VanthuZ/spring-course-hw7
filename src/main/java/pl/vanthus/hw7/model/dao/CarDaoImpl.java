@@ -3,6 +3,7 @@ package pl.vanthus.hw7.model.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import pl.vanthus.hw7.model.Car;
 import pl.vanthus.hw7.model.enums.ColorEnum;
 import pl.vanthus.hw7.model.enums.MakeEnum;
@@ -31,11 +32,22 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> findAll() {
-        List<Car> cars = new ArrayList<>();
         String sql = "SELECT * FROM cars";
+        return parseQueryResult(sql);
+    }
 
-        jdbcTemplate.queryForList(sql).stream()
-                .forEach(element -> cars.add(new Car(
+    @Override
+    public List<Car> getCarsBetweenGivenProductionYears(int yearFrom, int yearTo) {
+        String sql = "SELECT * FROM cars where production_year between " + yearFrom + " and " + yearTo + "";
+        return parseQueryResult(sql);
+    }
+
+
+    private List<Car> parseQueryResult(String query){
+        List<Car> carList = new ArrayList<>();
+
+        jdbcTemplate.queryForList(query).stream()
+                .forEach(element -> carList.add(new Car(
                         Long.parseLong(String.valueOf(element.get("car_id"))),
                         MakeEnum.valueOf(String.valueOf(element.get("make"))),
                         ModelEnum.valueOf(String.valueOf(element.get("model"))),
@@ -43,6 +55,6 @@ public class CarDaoImpl implements CarDao {
                         Integer.parseInt(String.valueOf(element.get("production_year")))
                 )));
 
-        return cars;
+        return carList;
     }
 }

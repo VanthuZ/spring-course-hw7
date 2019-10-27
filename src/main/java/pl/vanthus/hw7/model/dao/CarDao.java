@@ -11,4 +11,5 @@ public interface CarDao {
 
     void saveVideo(long carId, Enum<MakeEnum> make, Enum<ModelEnum> model, Enum<ColorEnum> color, int productionYear);
     List<Car> findAll();
+    List<Car> getCarsBetweenGivenProductionYears(int yearFrom, int yearTo);
 }

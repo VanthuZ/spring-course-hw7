@@ -3,6 +3,7 @@ package pl.vanthus.hw7.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import pl.vanthus.hw7.model.enums.ColorEnum;
 import pl.vanthus.hw7.model.enums.MakeEnum;
 import pl.vanthus.hw7.model.enums.ModelEnum;
