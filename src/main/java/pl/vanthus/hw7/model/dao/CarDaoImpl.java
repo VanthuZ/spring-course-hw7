@@ -23,10 +23,10 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public void saveVideo(long carId, Enum<MakeEnum> make, Enum<ModelEnum> model, Enum<ColorEnum> color, int productionYear) {
-           Car car = new Car(carId, make, model, color, productionYear);
-           String sql = "INSERT INTO cars VALUES (?, ?, ?, ?, ?)";
-           jdbcTemplate.update(sql, car.getCarId(), car.getMake().toString(), car.getModel().toString(), car.getColor().toString(), car.getProductionYear());
+    public void saveVideo(Enum<MakeEnum> make, Enum<ModelEnum> model, Enum<ColorEnum> color, int productionYear) {
+           Car car = new Car(make, model, color, productionYear);
+           String sql = "INSERT INTO cars(make, model, color, production_year) VALUES (?, ?, ?, ?)";
+           jdbcTemplate.update(sql, car.getMake().toString(), car.getModel().toString(), car.getColor().toString(), car.getProductionYear());
 
     }
 

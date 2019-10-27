@@ -19,5 +19,10 @@ public class Car {
     private Enum<ColorEnum> color;
     private int productionYear;
 
-
+    public Car(Enum<MakeEnum> make, Enum<ModelEnum> model, Enum<ColorEnum> color, int productionYear) {
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.productionYear = productionYear;
+    }
 }
