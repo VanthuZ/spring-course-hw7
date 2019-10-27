@@ -66,10 +66,11 @@ public class CarGui extends VerticalLayout {
                 new FormLayout.ResponsiveStep("25em", 1),
                 new FormLayout.ResponsiveStep("35em", 2));
 
-       // gridLayout.setColspan(yearToField, 1);
-        gridLayout.add(carGrid);
+
+        setHorizontalComponentAlignment(Alignment.CENTER, gridLayout);
 
         add(gridLayout);
+        add(carGrid);
     }
 
     private void initAddCarForm(){
@@ -108,6 +109,7 @@ public class CarGui extends VerticalLayout {
                 new FormLayout.ResponsiveStep("35em", 2)
         );
 
+        setHorizontalComponentAlignment(Alignment.CENTER, addCar);
         add(addCar);
     }
 
